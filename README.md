@@ -8,8 +8,9 @@ A reusable Codex skill for React and Vue learning, code organization, and approv
 
 - **学习模式**：基于实际代码讲解，并提供最小完整示例；不会修改源码、测试、配置或依赖。
 - **工作模式**：先说明方案、影响范围与测试计划；只有在用户明确确认后才改动文件。
-- **React 组织模板**：导入分组、组件内 Hooks 的推荐排列、派生状态与副作用的边界。
+- **React 组织模板**：明确的导入分组、组件内 Hooks 的推荐排列、派生状态与副作用的边界。
 - **Vue 组织模板**：`<script setup>` 的代码顺序、`computed` 与 `watch` 的使用边界，以及样式和测试原则。
+- **CSS 组织规范**：从元素外部到内部排列样式属性：定位、布局、盒模型、外观、文本、交互与动画。
 
 ## Project structure
 
@@ -58,7 +59,9 @@ The agent first provides the chosen approach, an exact list of files to add or m
 
 - Prefer the repository's existing conventions over generic templates.
 - Keep React Hooks unconditional and before `return`.
+- Group React imports by framework, shared modules, nearby components, local types, then local helpers and styles.
 - Use `useEffect` and Vue `watch` for external synchronization or real side effects, not values that can be derived during rendering.
+- Order CSS declarations from outside to inside: positioning, layout, box model, appearance, text, then interaction and motion.
 - Avoid premature abstractions, unnecessary memoization, and implementation-detail tests.
 - Prefer native semantic controls and accessible state where interaction requires it.
 

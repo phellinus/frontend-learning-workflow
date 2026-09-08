@@ -45,7 +45,7 @@ After confirmation:
 
 ## Code organization
 
-When recommending or writing React/Vue component code, read [component-organization.md](references/component-organization.md). Treat it as a default template, not a reason to fight the repository's established linting, import aliases, naming, or styling conventions.
+When recommending or writing React/Vue component code, read [component-organization.md](references/component-organization.md). Follow its import grouping and CSS property order as defaults, while preserving a repository's established linting, import aliases, naming, or styling conventions when they differ.
 
 ## Boundaries
 
