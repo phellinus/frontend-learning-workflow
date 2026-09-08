@@ -6,7 +6,7 @@ A reusable Codex skill for React and Vue learning, code organization, and approv
 
 ## What it provides
 
-- **学习模式**：基于实际代码讲解，并提供最小完整示例；不会修改源码、测试、配置或依赖。
+- **学习模式**：按真实开发顺序讲解；每一步说明目的、给出承接前一步的最小代码片段，并提供检查点；不会修改源码、测试、配置或依赖。
 - **工作模式**：先说明方案、影响范围与测试计划；只有在用户明确确认后才改动文件。
 - **React 组织模板**：明确的导入分组、组件内 Hooks 的推荐排列、派生状态与副作用的边界。
 - **Vue 组织模板**：`<script setup>` 的代码顺序、`computed` 与 `watch` 的使用边界，以及样式和测试原则。
@@ -45,7 +45,7 @@ Use the skill name together with the mode you want.
 $frontend-learning-workflow 学习模式：解释这个 React 组件，并给我代码，不要修改源码。
 ```
 
-The agent inspects the relevant code read-only, explains the approach, gives a smallest complete example, and names the files and commands you could use to verify it yourself.
+The agent inspects the relevant code read-only and teaches through a build sequence: understand the goal, design the data flow, implement logic, build the view, add ordered styles, then verify behavior. Each step explains the decision, gives a small snippet that builds on the previous step, and includes a learner check. It never edits your source files.
 
 ### Work mode
 

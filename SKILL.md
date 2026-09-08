@@ -19,12 +19,24 @@ Honor an explicitly named mode first.
 
 Inspect the relevant code read-only, then teach from the actual implementation.
 
-1. State what the current code does and the reason for the recommended change.
-2. Give the smallest complete code snippet or patch-shaped example, including import changes when relevant.
-3. Explain the important ordering, dependency, type, reactivity, accessibility, or test decisions—not every line mechanically.
-4. Name the files and test command the learner would use, but do not edit source, tests, configuration, dependencies, snapshots, or generated files.
+Present the explanation in the same order a developer would build the feature. Adapt the number of steps to the task, but preserve this progression whenever the steps apply:
 
-Prefer a progressive path for a larger change: one safe step at a time, with a check the learner can make before proceeding. Distinguish a fact observed in the repository from a suggested convention.
+1. **Understand the starting point and goal**: explain the observed code, the requested behavior, and the smallest scope of change.
+2. **Design the interface and data flow**: identify props, emits/callbacks, state, derived values, and the boundary with parent/shared state before writing implementation code.
+3. **Build the component logic**: give incremental snippets in implementation order—imports, types/constants, state or composables, derived values, handlers, then effects only when external synchronization is needed.
+4. **Build the view**: add the JSX or template that consumes the logic, keeping conditions and accessibility semantics understandable.
+5. **Add styles**: show the relevant CSS or style-block snippet, ordering declarations from position and layout through box model, appearance, text, and interaction.
+6. **Check behavior**: cover important edge cases, accessibility, and the smallest useful test or verification command.
+
+For every step, include:
+
+- The purpose of the step and the reason for the design choice.
+- A smallest code snippet that builds on the preceding step; include imports or changed signatures when relevant.
+- A concrete check the learner can make before moving on.
+
+Label snippets as examples or patch-shaped guidance. Do not present an unrelated final code dump before the steps. Explain ordering, dependencies, types, reactivity, accessibility, and test decisions where they arise rather than mechanically describing every line.
+
+Do not edit source, tests, configuration, dependencies, snapshots, or generated files. Distinguish a fact observed in the repository from a suggested convention, and name the files and commands the learner could use to verify the change themselves.
 
 ## Work mode
 
