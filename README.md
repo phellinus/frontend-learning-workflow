@@ -6,11 +6,12 @@ A reusable Codex skill for React and Vue learning, code organization, and approv
 
 ## What it provides
 
-- **学习模式**：按真实开发顺序讲解；每一步说明目的、给出承接前一步的最小代码片段，并提供检查点；不会修改源码、测试、配置或依赖。
+- **学习模式**：按真实开发顺序讲解；每一步说明目的、给出承接前一步的最小代码片段、必要的高价值注释与检查点；不会修改源码、测试、配置或依赖。
 - **工作模式**：先说明方案、影响范围与测试计划；只有在用户明确确认后才改动文件。
 - **React 组织模板**：明确的导入分组、组件内 Hooks 的推荐排列、派生状态与副作用的边界。
 - **Vue 组织模板**：`<script setup>` 的代码顺序、`computed` 与 `watch` 的使用边界，以及样式和测试原则。
 - **CSS 组织规范**：从元素外部到内部排列样式属性：定位、布局、盒模型、外观、文本、交互与动画。
+- **注释规范**：TypeScript 使用首段摘要与 TSDoc 标准标签；注释说明意图与约束，而不复述代码。
 
 ## Project structure
 
@@ -45,7 +46,7 @@ Use the skill name together with the mode you want.
 $frontend-learning-workflow 学习模式：解释这个 React 组件，并给我代码，不要修改源码。
 ```
 
-The agent inspects the relevant code read-only and teaches through a build sequence: understand the goal, design the data flow, implement logic, build the view, add ordered styles, then verify behavior. Each step explains the decision, gives a small snippet that builds on the previous step, and includes a learner check. It never edits your source files.
+The agent inspects the relevant code read-only and teaches through a build sequence: understand the goal, design the data flow, implement logic, build the view, add ordered styles, then verify behavior. Each step explains the decision, gives a small snippet that builds on the previous step, includes only comments that explain non-obvious intent, and provides a learner check. It never edits your source files.
 
 ### Work mode
 
@@ -62,6 +63,7 @@ The agent first provides the chosen approach, an exact list of files to add or m
 - Group React imports by framework, shared modules, nearby components, local types, then local helpers and styles.
 - Use `useEffect` and Vue `watch` for external synchronization or real side effects, not values that can be derived during rendering.
 - Order CSS declarations from outside to inside: positioning, layout, box model, appearance, text, then interaction and motion.
+- Use a TSDoc summary as the default `/** ... */` description; use `@description` only when an established JavaScript/JSDoc toolchain requires it.
 - Avoid premature abstractions, unnecessary memoization, and implementation-detail tests.
 - Prefer native semantic controls and accessible state where interaction requires it.
 

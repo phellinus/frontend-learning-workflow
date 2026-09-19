@@ -122,6 +122,56 @@ function handleSelect(key: string) {
 
 Avoid `watch` when a `computed` value, template expression, or direct event handler is sufficient. Prefer `computed` for derived state and `watch`/lifecycle hooks for side effects. Keep template expressions small; name a computed property or handler when an expression begins to encode business logic.
 
+## Comment patterns
+
+Use a documentation comment only when a public API needs context beyond its name and type. In TypeScript, the first paragraph is the summary; `@description` is not required. Add standard TSDoc tags only when they provide useful information.
+
+```tsx
+/**
+ * Renders a keyboard-accessible menu item.
+ *
+ * @remarks
+ * Selection stays parent-owned so nested menus share one active path.
+ *
+ * @param item - The item rendered by this component.
+ * @param onSelect - Reports the selected key to the parent.
+ */
+export function MenuItem({ item, onSelect }: MenuItemProps) {
+    const handleSelect = () => {
+        // The parent owns selection so it can also restore a deep-linked path.
+        onSelect(item.key);
+    };
+
+    return <button onClick={handleSelect} type="button">{item.label}</button>;
+}
+```
+
+```vue
+<script setup lang="ts">
+/**
+ * Reports the selection instead of mutating parent-owned menu state.
+ */
+const emit = defineEmits<{ select: [key: string] }>();
+
+function handleSelect(key: string) {
+    // A disabled item remains visible but cannot change the active path.
+    if (props.disabled) return;
+
+    emit('select', key);
+}
+</script>
+```
+
+Do not narrate self-explanatory code:
+
+```ts
+// Avoid: repeats the code.
+setSelectedKey(key);
+
+// Prefer: explains a constraint that the code cannot reveal.
+setSelectedKey(key); // The parent persists this key in the URL for deep links.
+```
+
 ## CSS property order: outside to inside
 
 Order declarations by the part of the element they affect, from its placement in the page to its contents and behavior. This makes a selector easy to scan and keeps React CSS files, CSS Modules, and Vue `<style>` blocks consistent.

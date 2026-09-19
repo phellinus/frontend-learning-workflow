@@ -34,7 +34,7 @@ For every step, include:
 - A smallest code snippet that builds on the preceding step; include imports or changed signatures when relevant.
 - A concrete check the learner can make before moving on.
 
-Label snippets as examples or patch-shaped guidance. Do not present an unrelated final code dump before the steps. Explain ordering, dependencies, types, reactivity, accessibility, and test decisions where they arise rather than mechanically describing every line.
+Label snippets as examples or patch-shaped guidance. Do not present an unrelated final code dump before the steps. Explain ordering, dependencies, types, reactivity, accessibility, and test decisions where they arise rather than mechanically describing every line. Add comments to snippets only where they preserve intent that code cannot express clearly, and explain why that comment is needed.
 
 Do not edit source, tests, configuration, dependencies, snapshots, or generated files. Distinguish a fact observed in the repository from a suggested convention, and name the files and commands the learner could use to verify the change themselves.
 
@@ -58,6 +58,18 @@ After confirmation:
 ## Code organization
 
 When recommending or writing React/Vue component code, read [component-organization.md](references/component-organization.md). Follow its import grouping and CSS property order as defaults, while preserving a repository's established linting, import aliases, naming, or styling conventions when they differ.
+
+## Code comments
+
+Use comments to explain intent, not syntax. Prefer clear names and small functions before adding a comment.
+
+- Add inline comments only for business constraints, non-obvious trade-offs, browser/framework workarounds, security or performance decisions, and deliberately unusual control flow.
+- Place a `//` comment immediately above the code it explains. Use ordinary `/* ... */` comments only when one implementation explanation genuinely needs several lines; do not place documentation tags in ordinary block comments.
+- For exported components, composables/hooks, public types, and reusable utilities whose contracts are not obvious, use a documentation comment (`/** ... */`).
+- In TypeScript, use TSDoc style: make the opening paragraph the one-sentence summary, and add `@remarks`, `@param`, `@returns`, or `@throws` only when they add information beyond the type signature. Do not require `@description`.
+- In JavaScript projects that explicitly use JSDoc tooling, `@description` is allowed but optional; use it only when the tool or the repository convention requires it.
+- Keep comments accurate when the related logic changes. Remove commented-out code instead of retaining it; version control preserves its history.
+- `TODO` and `FIXME` must include an owner and ISO date, and must be resolved or removed promptly: `// TODO(name, 2026-09-19): explain the remaining work.`
 
 ## Boundaries
 
